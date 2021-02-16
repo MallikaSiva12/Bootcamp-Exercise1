@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /*1.std html emlemet style? */
+        body {
+
+            width: 960px;
+        }
+        button,.button{
+            background-color: rgb(59, 134, 219);
+            color:white;
+            border-radius: 3px;
+            padding: 6px 10px;
+            text-decoration: none;
+        }
+
+        table td {
+            /* border: 1px solid; */
+        }
+
+        table td:first-child {
+            text-align: right;
+        }
+
+        td {
+            margin: 50px;
+        }
+
+        /*2. id based style ?*/
+        #frmFeedback {
+            border: 1px dashed;
+            border-radius: 1ch;
+            background-color: rgb(236, 239, 243);
+        }
+        
+
+        /*3. custom css class style? */
+    </style>
+</head>
+
+<body>
+    <!-- As a developer, create a HTML feedback form with basic CSS with the following details .
+    Name  - text
+    Email - textbox
+    Scale - textbox 1-10
+    Where - dropdown
+    Time - radio buttons
+    Emotions Experience -checkbox
+    Positive Experience - text area
+    Submit Button  -->
+    <form id="frmFeedback">
+        <h1 class="center-align">Feedback Form</h1>
+        <h2 class="center-align">Tell us something that hapened to you today.</h2>
+        <table>
+            <tr>
+                <td><label for="userName">Name</label></td>
+                <td><input name="userName" id="userName" type="text" placeholder="Enter your name"
+                        title="Enter your name" /></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="email" id="email" name="email" placeholder="Enter your name" /></td>
+            </tr>
+            <tr>
+                <td>On a scale of 1-10, how good was it?</td>
+                <!-- <td><input type="text" pattern="\d" maxlength="2" size="2" placeholder="1-10" /></td> -->
+               <td><input type="number" min= "1" max=10 placeholder="1-10">
+            </td>
+            <!-- <tr>
+                <td>Rating</td>
+                <td><input type="range" min="1" max="10" placeholder="1-10" /></td>
+            </tr> -->
+            <tr>
+                <td>Where did it happen?</td>
+                <td>
+                    <select>
+                        <option value="home">At Home</option>
+                        <option value="work">At Work</option>
+                        <option value="school">At School</option>
+
+                    </select>
+                </td></tr>
+            <tr>
+                <td>At what time of day did it hapen?</td>
+                <td>
+
+                    <input type="radio" id="morning" name="time" value="morning">
+                    <label for="morning">Morning</label><br>
+                    <input type="radio" id="afternoon" name="time" value="afternoon">
+                    <label for="afternoon">Afternoon</label><br>
+                    <input type="radio" id="evening" name="time" value="evening">
+                    <label for="evening">Evening</label>
+                </td>
+            </tr>
+            <tr>
+                <td>What emotions did you experience?<br>(Select all that apply)</td>
+                <td>
+                    <input type="checkbox" id="excited" name="excited" value="excited">
+                    <label for="excited">Excited</label><br>
+                    <input type="checkbox" id="humbled" name="humbled" value="humbled">
+                    <label for="humbled">Humbled</label><br>
+                    <input type="checkbox" id="elated" name="elated" value="elated">
+                    <label for="elated">Elated</label><br>
+                    <input type="checkbox" id="loved" name="loved" value="loved">
+                    <label for="loved">Loved</label><br>
+                    <input type="checkbox" id="enthusiastic" name="enthusiastic" value="enthusiastic">
+                    <label for="enthusiastic">Enthusiastic</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Please describe your positive experience.</td>
+                <td>
+                    <textarea rows="10" cols="20"></textarea>
+                </td>
+            </tr>
+            <!--
+            <tr><td></td><td></td></tr> -->
+            <tr>
+                <td><button>Submit</button></td>
+                <td><a class="button" href="index.html">Back</a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
