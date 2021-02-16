@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Feedback Form</title>
     <link rel="stylesheet" href="style.css">
     <style>
         /*1.std html emlemet style? */
@@ -13,7 +13,7 @@
 
             width: 960px;
         }
-        button,.button{
+        button, .button{
             background-color: rgb(59, 134, 219);
             color:white;
             border-radius: 3px;
@@ -41,7 +41,8 @@
         }
         
 
-        /*3. custom css class style? */
+        /*3. custom css class style ? */
+
     </style>
 </head>
 
@@ -73,10 +74,6 @@
                 <!-- <td><input type="text" pattern="\d" maxlength="2" size="2" placeholder="1-10" /></td> -->
                <td><input type="number" min= "1" max=10 placeholder="1-10">
             </td>
-            <!-- <tr>
-                <td>Rating</td>
-                <td><input type="range" min="1" max="10" placeholder="1-10" /></td>
-            </tr> -->
             <tr>
                 <td>Where did it happen?</td>
                 <td>
@@ -90,11 +87,14 @@
             <tr>
                 <td>At what time of day did it hapen?</td>
                 <td>
-
+                    
+                    <!-- 1.id is client side js and for label 2.name is for server side posting -->
                     <input type="radio" id="morning" name="time" value="morning">
                     <label for="morning">Morning</label><br>
+
                     <input type="radio" id="afternoon" name="time" value="afternoon">
                     <label for="afternoon">Afternoon</label><br>
+
                     <input type="radio" id="evening" name="time" value="evening">
                     <label for="evening">Evening</label>
                 </td>
