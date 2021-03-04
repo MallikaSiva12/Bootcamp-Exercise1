@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var arr = [];
+        var person = { firstName: "John", lastName: "Doe",ssn:"123456789", address:"abc st", city:"clarksburg", state:"MD", phone:"1234567891", email: "abc@bbc.com" };
+        arr.push(person);
+        arr.push({ firstName: "John", lastName: "Doe",ssn:"123456789", address:"abc st", city:"clarksburg", state:"MD", phone:"1234567891", email: "abc@bbc.com" });
+
+        //CRUD - operations
+        function addItem() {
+            var person = {
+                firstName: document.getElementById('fname').value
+                , lastName: document.getElementById('lname').value
+                , email: "abc@bbc.com"
+            };
+            arr.push(person);
+            loadGrid(); //refresh/reload the grid
+        }
+
+        function saveItem() {
+            var idx = _idx;
+            arr[idx].firstName = document.getElementById('fname').value;
+            arr[idx].lastName = document.getElementById('lname').value;
+            loadGrid();
+        }
+
+        var _idx;
+        function editItem(idx) {
+            document.getElementById('fname').value = arr[idx].firstName;
+            document.getElementById('lname').value = arr[idx].lastName;
+            document.getElementById('ssn').value = arr[idx].ssn;
+            document.getElementById('email').value = arr[idx].email;
+            //TODO: add other fields
+            _idx = idx;
+        }
+        function clearItem() {
+            document.getElementById('fname').value = "";
+            document.getElementById('lname').value = "";
+            document.getElementById('ssn').value = "";
+            document.getElementById('email').value = "";
+            //TODO: add other fields
+
+        }
+        function verifyItem() {
+            document.getElementById('fname_dd').innerHTML=document.getElementById('fname').value;
+
+            var ssn = document.getElementById('ssn').value;
+            if (ssn % 2==0) {
+                document.getElementById('status').innerHTML = "Status:Fail";
+                document.getElementById('status').style.color='red';
+            }
+            else {
+                document.getElementById('status').innerHTML = "Status:Pass";
+                document.getElementById('status').style.color='green';
+            }
+
+        }
+
+        function deleteItem(idx) {
+            arr.splice(idx, 1);
+            loadGrid();
+        }
+
+        function loadGrid() { //load or refresh the data grid
+            // get handle on div
+            var container = document.getElementById('data-grid-container');
+            container.innerHTML = ""; //clear first
+
+            // create table element
+            var table = document.createElement('table');
+            var tbody = document.createElement('tbody');
+
+            // loop throug array
+            for (i = 0; i < arr.length; i++) {
+                var person = arr[i];
+                var row = document.createElement('tr');
+                var cell = document.createElement('td'); cell.textContent = person.firstName; row.appendChild(cell);
+                cell = document.createElement('td'); cell.textContent = person.lastName; row.appendChild(cell);
+                cell = document.createElement('td'); cell.textContent = person.ssn; row.appendChild(cell);
+                
+                cell = document.createElement('td'); cell.textContent = person.address; row.appendChild(cell);
+                cell = document.createElement('td'); cell.textContent = person.city; row.appendChild(cell);
+                cell = document.createElement('td'); cell.textContent = person.state; row.appendChild(cell);
+                cell = document.createElement('td'); cell.textContent = person.phone; row.appendChild(cell);
+                cell = document.createElement('td'); cell.textContent = person.email; row.appendChild(cell);
+
+                //add edit button to each row
+                var btn = document.createElement('button');
+                btn.innerHTML = "Edit"
+                btn.setAttribute("onClick", "editItem(" + i + ")");
+                row.appendChild(btn);
+
+                //add delete button to each row
+                var btnDel = document.createElement('button');
+                btnDel.innerHTML = "Delete"
+                btnDel.setAttribute("onClick", "deleteItem(" + i + ")");
+                row.appendChild(btnDel);
+
+                tbody.appendChild(row);
+            }
+            // append tbody to table
+            table.appendChild(tbody);
+            // append table to container
+            container.appendChild(table);
+        }
+    </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /** this divindes the page 2 flex-up and down*/
+        .flex-container {
+            display: flex;
+            height: 150vh;
+            border: #ccc solid 1px;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .item {
+            background-color: #fff;
+            text-align: center;
+            flex: 1 0 100px;
+        }
+
+        /**This divides item 1 into item 3 and item 4*/
+        .item-1 {
+            display: flex;
+            background-color: #f4f4f4;
+            border: #ccc solid 1px;
+            text-align: center;
+            flex: 1 0 100px;
+        }
+
+        /**This is to give border between item 3 and item 4*/
+        .item-3 {
+            border-right: #ccc solid 1px;
+        }
+
+        table {
+            border: solid 1px #DDEEEE;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font: normal 13px Arial, sans-serif;
+        }
+
+
+        thead th {
+            background-color: #DDEFEF;
+            border: solid 1px #000c0c;
+            color: #336B6B;
+            padding: 10px;
+            text-align: center;
+            text-shadow: 1px 1px 1px #fff;
+        }
+
+        tbody td {
+
+            border: solid 1px #000c0c;
+            padding: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div id="item-1" display="flex" class="item item-1">
+            <div id="item-3" class=" item item-3">
+                <!-- edit form -->
+                <h3>Add/Edit Form</h3>
+                <table>
+                    <tr>
+                        <td><label for="fname">First Name</label></td>
+                        <td><input name="fname" id="fname" type="text" placeholder="Enter your first name"
+                                title="Enter your fname" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lname">Last Name</label></td>
+                        <td><input name="lname" id="lname" type="text" placeholder="Enter your last name"
+                                title="Enter your lname" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ssn">SSN</label></td>
+                        <td><input name="ssn" id="ssn" type="text" placeholder="Enter your ssn" title="ssn" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email</label></td>
+                        <td><input type="email" id="email" name="email" placeholder="Enter your name" /></td>
+                    </tr>
+
+
+                </table>
+
+
+                <button onclick="addItem()">Add</button><button onclick="saveItem()">Save</button>
+                <button onclick="clearItem()">clear</button>
+                <button onclick="verifyItem()">Verify</button>
+            </div>
+            <div id="item-4" class=" item">
+                <h3>Item 4</h3>
+                <dl>
+                    <dt>First Name</dt>
+                    <dd id="fname_dd"></dd>
+                    <dt>Last Name</dt>
+                    <dd id="lname_dd"></dd>
+                    <dt>SSN</dt>
+                    <dd></dd>
+                  </dl>
+                <label id="status">status</label>
+            </div>
+
+        </div>
+        <h3>Data Grid</h3>
+        <div id="item-2" class="item item-2">
+            <form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>SSN</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </form>
+
+            <div id='data-grid-container'></div>
+
+            <script>loadGrid()</script>
+        </div>
+</body>
+
+</html>
